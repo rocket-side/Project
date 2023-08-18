@@ -1,10 +1,10 @@
 package com.rocket.rocket_project.recruit.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Null;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -33,8 +33,8 @@ public class Recruit {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @Column(name = "create_at",nullable = false)
-    private LocalDateTime createAt;
+    @Column(name = "created_at",nullable = false)
+    private LocalDateTime createdAt;
 
     @Column(nullable = false)
     private String content;
@@ -42,15 +42,26 @@ public class Recruit {
     @Column(nullable = false)
     private String info;
 
-//    @JoinColumn(name = "field_seq")
-//    @ManyToOne
-//    private Field fieldCode;
+    @JoinColumn(name = "field_seq")
+    @ManyToOne
+    private Field fieldCode;
 
+    @JoinColumn(name = "type_seq",nullable = false)
+    @ManyToOne
+    private Type typeCode;
 
-
-
-
-
-
-
+    @Builder
+    public Recruit(String name, String state, Integer leader, LocalDate startDate, LocalDate endDate,
+                   LocalDateTime createAt, String content, String info, Field fieldCode, Type typeCode) {
+        this.name = name;
+        this.state = state;
+        this.leader = leader;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.createdAt = createAt;
+        this.content = content;
+        this.info = info;
+        this.fieldCode = fieldCode;
+        this.typeCode = typeCode;
+    }
 }
