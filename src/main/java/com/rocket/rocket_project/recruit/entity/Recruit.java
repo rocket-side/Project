@@ -1,10 +1,10 @@
 package com.rocket.rocket_project.recruit.entity;
 
+import com.rocket.rocket_project.feild.entity.Field;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Null;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -42,15 +42,8 @@ public class Recruit {
     @Column(nullable = false)
     private String info;
 
-//    @JoinColumn(name = "field_seq")
-//    @ManyToOne
-//    private Field fieldCode;
-
-
-
-
-
-
-
+    @JoinColumn(name = "field_seq",nullable = false)
+    @ManyToOne
+    private Field fieldCode;
 
 }
