@@ -2,9 +2,7 @@ package com.rocket.rocket_project.skill_recruit.entity;
 
 import com.rocket.rocket_project.recruit.entity.Recruit;
 import com.rocket.rocket_project.skill.entity.Skill;
-import com.rocket.rocket_project.type.entity.Type;
 import lombok.*;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
