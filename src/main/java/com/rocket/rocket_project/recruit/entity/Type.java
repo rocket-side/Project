@@ -1,4 +1,4 @@
-package com.rocket.rocket_project.type.entity;
+package com.rocket.rocket_project.recruit.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

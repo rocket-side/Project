@@ -1,4 +1,4 @@
-package com.rocket.rocket_project.feild.entity;
+package com.rocket.rocket_project.recruit.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -6,17 +6,15 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Field")
+@Table(name = "Skill")
 @NoArgsConstructor
 @Getter
-public class Field {
+public class Skill {
     @Id
-    @Column(name = "field_seq",nullable = false)
+    @Column(name = "skill_seq",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer fieldSeq;
+    private Integer skillSeq;
 
     @Column(nullable = false)
     private String name;
-
-
 }

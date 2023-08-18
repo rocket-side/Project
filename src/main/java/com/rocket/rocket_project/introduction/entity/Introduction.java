@@ -3,7 +3,6 @@ package com.rocket.rocket_project.introduction.entity;
 import com.rocket.rocket_project.recruit.entity.Recruit;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
