@@ -33,8 +33,8 @@ public class Recruit {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @Column(name = "create_at",nullable = false)
-    private LocalDateTime createAt;
+    @Column(name = "created_at",nullable = false)
+    private LocalDateTime createdAt;
 
     @Column(nullable = false)
     private String content;
@@ -58,7 +58,7 @@ public class Recruit {
         this.leader = leader;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.createAt = createAt;
+        this.createdAt = createAt;
         this.content = content;
         this.info = info;
         this.fieldCode = fieldCode;
