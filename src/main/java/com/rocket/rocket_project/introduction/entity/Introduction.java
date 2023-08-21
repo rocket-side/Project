@@ -12,18 +12,17 @@ import java.time.LocalDateTime;
 @Getter
 public class Introduction {
     @Id
-    @MapsId
-    @JoinColumn(name = "recruit_seq",nullable = false)
-    @ManyToOne
-    private Recruit recruitSeq;
-
+    @Column(name = "recruit_seq")
+    private Integer recruitSeq;
     @Column(name = "like_count" ,nullable = false)
     private Integer likeCount;
-
     @Column(name = "created_at",nullable = false)
     private LocalDateTime createdAt;
-
     @Column
     private String content;
+    @MapsId
+    @JoinColumn(name = "recruit_seq",nullable = false)
+    @OneToOne
+    private Recruit recruit;
 
 }
