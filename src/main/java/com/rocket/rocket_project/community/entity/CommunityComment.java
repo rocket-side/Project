@@ -16,16 +16,13 @@ public class CommunityComment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_seq",nullable = false)
-    private Integer CommentSeq;
+    private Long CommentSeq;
     @Column(name = "create_at",nullable = false)
     private LocalDateTime createAt;
-
     @Column(name = "member_seq",nullable = false)
-    private Integer memberSeq;
-
+    private Long memberSeq;
     @Column(nullable = false)
     private String content;
-
     @JoinColumn(name = "comment_seq2")
     @ManyToOne
     private CommentIntroduction commentSeq2;

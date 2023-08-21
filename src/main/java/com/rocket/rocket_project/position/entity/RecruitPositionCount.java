@@ -15,7 +15,7 @@ public class RecruitPositionCount {
     Pk pk;
 
     @Column(nullable = false)
-    private String count;
+    private Integer count;
 
     @Embeddable
     @EqualsAndHashCode

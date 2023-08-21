@@ -17,17 +17,17 @@ public class Community {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_seq",nullable = false)
-    private Integer postSeq;
+    private Long postSeq;
     @Column(name = "created_at",nullable = false)
     private LocalDateTime createAt;
 
     @Column(name = "member_seq",nullable = false)
-    private Integer memberSeq;
+    private Long memberSeq;
 
     @Column(name = "view_count",nullable = false)
-    private String viewCount;
+    private Integer viewCount;
     @Column(name = "like_count",nullable = false)
-    private String likeCount;
+    private Integer likeCount;
     @Column(nullable = false)
     private String content;
     @JoinColumn(name = "category_seq")

@@ -17,7 +17,7 @@ public class Recruit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recruit_seq", nullable = false)
-    private Integer recruitSeq;
+    private Long recruitSeq;
 
     @Column(nullable = false)
     private String name;

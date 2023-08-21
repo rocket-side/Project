@@ -13,7 +13,7 @@ public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "position_seq",nullable = false)
-    private Integer positionSeq;
+    private Long positionSeq;
     @Column
     private String name;
     @ManyToOne

@@ -13,7 +13,7 @@ public class Field {
     @Id
     @Column(name = "field_seq",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer fieldSeq;
+    private Long fieldSeq;
 
     @Column(nullable = false)
     private String name;

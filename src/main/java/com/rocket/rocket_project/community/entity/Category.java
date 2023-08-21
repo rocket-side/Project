@@ -13,7 +13,7 @@ public class Category {
     @Id
     @Column(name = "category_seq",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer categorySeq;
+    private Long categorySeq;
 
     @Column(nullable = false)
     private String name;

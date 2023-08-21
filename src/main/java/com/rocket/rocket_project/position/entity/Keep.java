@@ -25,7 +25,7 @@ public class Keep {
         @ManyToOne
         private Recruit recruitSeq;
         @Column(name = "member_seq",nullable = false)
-        private Integer memberSeq;
+        private Long memberSeq;
     }
 
 }

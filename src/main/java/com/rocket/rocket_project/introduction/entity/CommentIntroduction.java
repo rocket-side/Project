@@ -14,13 +14,13 @@ public class CommentIntroduction {
     @Id
     @Column(name = "comment_seq",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer commentSeq;
+    private Long commentSeq;
 
     @Column(name = "create_at",nullable = false)
     private LocalDateTime createAt;
 
     @Column(name = "member_seq",nullable = false)
-    private Integer memberSeq;
+    private Long memberSeq;
 
     @Column(nullable = false)
     private String content;

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class Introduction {
     @Id
     @Column(name = "recruit_seq")
-    private Integer recruitSeq;
+    private Long recruitSeq;
     @Column(name = "like_count" ,nullable = false)
     private Integer likeCount;
     @Column(name = "created_at",nullable = false)

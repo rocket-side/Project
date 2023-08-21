@@ -24,7 +24,7 @@ public class RecruitPositionApply {
     @AllArgsConstructor
     public static class Pk implements Serializable {
         @Column(name = "member_seq",nullable = false)
-        private Integer memberSeq;
+        private Long memberSeq;
         @JoinColumn(name = "position_seq",nullable = false)
         @ManyToOne
         private Position positionSeq;

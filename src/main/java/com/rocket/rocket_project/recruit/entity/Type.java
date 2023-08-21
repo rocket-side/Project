@@ -13,7 +13,7 @@ public class Type {
     @Id
     @Column(name = "type_seq",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer typeSeq;
+    private Long typeSeq;
 
     @Column(nullable = false)
     private  String name;

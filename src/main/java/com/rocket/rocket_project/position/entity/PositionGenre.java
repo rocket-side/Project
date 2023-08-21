@@ -13,7 +13,7 @@ public class PositionGenre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "position_genre_seq",nullable = false)
-    private Integer positionGenreSeq;
+    private Long positionGenreSeq;
     @Column
     private String name;
 }
