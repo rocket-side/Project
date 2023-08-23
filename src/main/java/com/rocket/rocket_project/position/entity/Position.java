@@ -19,4 +19,6 @@ public class Position {
     @ManyToOne
     @JoinColumn(name = "position_genre_seq",nullable = false)
     private PositionGenre positionGenreSeq;
+
+
 }
