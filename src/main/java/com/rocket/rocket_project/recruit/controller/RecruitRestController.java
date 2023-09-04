@@ -2,6 +2,7 @@ package com.rocket.rocket_project.recruit.controller;
 
 import com.rocket.rocket_project.recruit.domain.request.AccessUser;
 import com.rocket.rocket_project.recruit.domain.response.RecruitCard;
+import com.rocket.rocket_project.recruit.domain.response.RecruitDto;
 import com.rocket.rocket_project.recruit.domain.response.RecruitTag;
 import com.rocket.rocket_project.recruit.service.RecruitService;
 import lombok.RequiredArgsConstructor;
@@ -41,12 +42,17 @@ public class RecruitRestController {
     }
 
     /**
-     * 공고 목록 사이트에서 사용할 태그목록 ->  프로젝트 유형/분야/포지션 태그
+     * 공고 목록 조회용 태그목록 ->  프로젝트 유형/분야/포지션 태그
      * @return List<RecruitTag>
      */
     @GetMapping("/types")
     public ResponseEntity<RecruitTag> getRecruitTagList(){
         return ResponseEntity.ok(recruitService.getRecruitTagList());
+    }
+
+    @GetMapping("/{recruit-seq}")
+    public ResponseEntity<RecruitDto> getRecruit(@PathVariable(name = "recruit-seq") Long recruitSeq) {
+        return ResponseEntity.ok(recruitService.getRecruit(recruitSeq));
     }
 
 

@@ -2,6 +2,7 @@ package com.rocket.rocket_project.recruit.repository;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
+import com.rocket.rocket_project.exception.NotFoundException;
 import com.rocket.rocket_project.position.entity.QKeep;
 import com.rocket.rocket_project.position.entity.QPosition;
 import com.rocket.rocket_project.position.entity.QRecruitPositionCount;
@@ -9,6 +10,7 @@ import com.rocket.rocket_project.recruit.domain.response.Keep;
 import com.rocket.rocket_project.recruit.domain.response.PositionForCards;
 import com.rocket.rocket_project.recruit.domain.response.RecruitTag;
 import com.rocket.rocket_project.recruit.entity.*;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -44,6 +46,9 @@ public class RecruitRepositoryImpl extends QuerydslRepositorySupport implements 
         if (type_pm != null) {
             content.where(type.typeSeq.eq(type_pm));
         }
+        //    private BooleanExpression eqPosition(Long position_pm) {
+//        return position_pm != null ? positionGenre.positionGenreSeq.eq(position_pm) : null;
+//    }
 
         List<Recruit> result = content.fetch();
         return new PageImpl<>(result, pageable,content.stream().count());
@@ -80,9 +85,17 @@ public class RecruitRepositoryImpl extends QuerydslRepositorySupport implements 
                 .fetch();
     }
 
-//    private BooleanExpression eqPosition(Long position_pm) {
-//        return position_pm != null ? positionGenre.positionGenreSeq.eq(position_pm) : null;
-//    }
+
+    @Override
+    public Recruit findByRecruitSeq(Long recruitSeq){
+       return from(recruit)
+                .innerJoin(recruit.projectType,type)
+                .leftJoin(recruit.projectField,field)
+                .where(recruit.recruitSeq.eq(recruitSeq))
+                .fetch().stream().findFirst()
+               .orElseThrow(() -> new NotFoundException("공고를 찾을 수 없습니다."));
+
+    }
 
 
 

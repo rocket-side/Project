@@ -42,7 +42,7 @@ public class RecruitService {
                     Type type = new Type(info.getProjectType().getTypeSeq(), info.getProjectType().getName());
                     Field field = new Field(info.getProjectField().getFieldSeq(), info.getProjectField().getName());
 
-                    // Keep 리스트에서  해당 recruit 번호를 갖고 있는 멤버들을 ArrayList에 담기
+                    // Keep 리스트에서  해당 recruit 번호를 갖고 있는 멤버들을 ArrayList 에 담기
                     List<Keep> keepList = recruitRepository.findAllKeepList(info.getRecruitSeq());
                     List<PositionForCards> positionList = recruitRepository.findAllRecruitPosition();
 
@@ -68,4 +68,29 @@ public class RecruitService {
                 .build();
     }
 
+    public RecruitDto getRecruit(Long recruitSeq) {
+        Recruit recruit = recruitRepository.findByRecruitSeq(recruitSeq);
+        Type typeDto = new Type(recruit.getProjectType().getTypeSeq(),
+                recruit.getProjectType().getName());
+        Field fieldDto = new Field(recruit.getProjectField().getFieldSeq(),
+                recruit.getProjectField().getName());
+        Integer keepCount = recruitRepository.findAllKeepList(recruitSeq).size();
+
+        return RecruitDto.builder()
+                .recruitSeq(recruitSeq)
+                .name(recruit.getName())
+                .status(recruit.getStatus())
+                .leader(recruit.getLeader())
+                .createdAt(recruit.getCreatedAt())
+                .startDate(recruit.getStartDate())
+                .endDate(recruit.getEndDate())
+                .content(recruit.getContent())
+                .info(recruit.getInfo())
+                .projectType(typeDto)
+                .projectField(fieldDto)
+                .keepCount(keepCount)
+                .build();
+
+
+    }
 }
