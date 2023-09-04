@@ -1,17 +1,19 @@
 package com.rocket.rocket_project.recruit.service;
 
+import com.rocket.rocket_project.position.repository.PositionRepository;
 import com.rocket.rocket_project.recruit.domain.response.*;
+import com.rocket.rocket_project.recruit.entity.ProjectField;
 import com.rocket.rocket_project.recruit.entity.Recruit;
+import com.rocket.rocket_project.recruit.repository.FieldRepository;
 import com.rocket.rocket_project.recruit.repository.RecruitRepository;
+import com.rocket.rocket_project.recruit.repository.TypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Pageable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +23,10 @@ import java.util.stream.Collectors;
 @Transactional(readOnly= true)
 public class RecruitService {
     private final RecruitRepository recruitRepository;
+    private final FieldRepository fieldRepository;
+    private final TypeRepository typeRepository;
+    private final PositionRepository positionRepository;
+
     /**
      * 모든 공고 카드 목록 조회
      * @return 프로젝트 리스트
@@ -54,6 +60,12 @@ public class RecruitService {
         return new PageImpl<>(recruitCards);
     }
 
-    public List<RecruitTag> getRecruitTagList() {
+    public RecruitTag getRecruitTagList() {
+        return RecruitTag.builder()
+                .fields(fieldRepository.findAllBy())
+                .types(typeRepository.findAllBy())
+                .positions(positionRepository.findAllPositionSeqAndName())
+                .build();
     }
+
 }

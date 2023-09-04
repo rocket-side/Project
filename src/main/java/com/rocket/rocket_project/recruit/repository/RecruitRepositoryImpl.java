@@ -7,6 +7,7 @@ import com.rocket.rocket_project.position.entity.QPosition;
 import com.rocket.rocket_project.position.entity.QRecruitPositionCount;
 import com.rocket.rocket_project.recruit.domain.response.Keep;
 import com.rocket.rocket_project.recruit.domain.response.PositionForCards;
+import com.rocket.rocket_project.recruit.domain.response.RecruitTag;
 import com.rocket.rocket_project.recruit.entity.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -64,7 +65,6 @@ public class RecruitRepositoryImpl extends QuerydslRepositorySupport implements 
                 .fetch();
     }
 
-
     /**
      *  모든 공고들의 포지션 목록 조회
      * @return 공고카드 리스트
@@ -83,4 +83,8 @@ public class RecruitRepositoryImpl extends QuerydslRepositorySupport implements 
 //    private BooleanExpression eqPosition(Long position_pm) {
 //        return position_pm != null ? positionGenre.positionGenreSeq.eq(position_pm) : null;
 //    }
+
+
+
+
 }

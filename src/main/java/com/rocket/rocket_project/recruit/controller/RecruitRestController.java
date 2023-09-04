@@ -45,7 +45,7 @@ public class RecruitRestController {
      * @return List<RecruitTag>
      */
     @GetMapping("/types")
-    public ResponseEntity<List<RecruitTag>> getRecruitTagList(){
+    public ResponseEntity<RecruitTag> getRecruitTagList(){
         return ResponseEntity.ok(recruitService.getRecruitTagList());
     }
 

@@ -17,7 +17,7 @@ public class RecruitTag {
 
     private List<Type> types;
 
-    private List<Field> Fields;
+    private List<Field> fields;
 
     private List<Position> positions;
 
