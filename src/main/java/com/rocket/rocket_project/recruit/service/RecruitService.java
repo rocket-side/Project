@@ -1,6 +1,8 @@
 package com.rocket.rocket_project.recruit.service;
 
 import com.rocket.rocket_project.position.repository.PositionRepository;
+import com.rocket.rocket_project.recruit.domain.request.AccessUser;
+import com.rocket.rocket_project.recruit.domain.request.RecruitLeader;
 import com.rocket.rocket_project.recruit.domain.response.*;
 import com.rocket.rocket_project.recruit.entity.ProjectField;
 import com.rocket.rocket_project.recruit.entity.Recruit;
@@ -92,5 +94,11 @@ public class RecruitService {
                 .build();
 
 
+    }
+
+    public Boolean isGroupLeader(Long recruitSeq, AccessUser accessUser) {
+        RecruitLeader recruitLeader = recruitRepository.findRecruitLeaderByRecruitSeq(recruitSeq);
+        if(recruitLeader.getLeader() == accessUser.getMemberSeq()) return true;
+        else return false;
     }
 }

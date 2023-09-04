@@ -40,8 +40,12 @@ DELETE http://localhost:8080/projects/3
 
 ### 공고글 생성자 확인하기
 GET http://localhost:8989/project/api/recruits/isgroupleader/1
+Content-Type: application/json
 
-# project-member
+{
+  "memberSeq" : 1
+}
+
 ### 프로젝트별 멤버 조회
 GET http://localhost:8080/projects/2/accounts
 

@@ -1,6 +1,8 @@
 package com.rocket.rocket_project.recruit.repository;
 
 import com.rocket.rocket_project.position.entity.Keep;
+import com.rocket.rocket_project.recruit.domain.request.AccessUser;
+import com.rocket.rocket_project.recruit.domain.request.RecruitLeader;
 import com.rocket.rocket_project.recruit.domain.response.PositionForCards;
 import com.rocket.rocket_project.recruit.entity.ProjectField;
 import com.rocket.rocket_project.recruit.entity.ProjectType;
@@ -14,6 +16,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
@@ -112,5 +115,12 @@ class RecruitRepositoryCustomTest {
     void findAllRecruitPosition() {
         List<PositionForCards> positions = recruitRepository.findAllRecruitPosition();
         assertThat(positions.size()).isEqualTo(3);
+    }
+
+    @Test
+    void findRecruitByRecruitSeq(){
+        RecruitLeader leaderSeq = recruitRepository.findRecruitLeaderByRecruitSeq(1L);
+        Long value = leaderSeq.getLeader();
+        assertThat(value).isEqualTo(1L);
     }
 }

@@ -100,4 +100,6 @@ public class RecruitRepositoryImpl extends QuerydslRepositorySupport implements 
 
 
 
+
+
 }

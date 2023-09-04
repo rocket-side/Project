@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -50,9 +50,20 @@ public class RecruitRestController {
         return ResponseEntity.ok(recruitService.getRecruitTagList());
     }
 
+    /**
+     * 해당 공고글 조회
+     * @param recruitSeq
+     * @return
+     */
     @GetMapping("/{recruit-seq}")
     public ResponseEntity<RecruitDto> getRecruit(@PathVariable(name = "recruit-seq") Long recruitSeq) {
         return ResponseEntity.ok(recruitService.getRecruit(recruitSeq));
+    }
+
+    @GetMapping("/isgroupleader/{recruit-seq}")
+    public ResponseEntity<Boolean> isGroupLeader(@PathVariable(name = "recruit-seq") Long recruitSeq,
+                                                 @Valid @RequestBody AccessUser accessUser) {
+        return ResponseEntity.ok(recruitService.isGroupLeader(recruitSeq,accessUser));
     }
 
 
