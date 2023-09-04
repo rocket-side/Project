@@ -1,5 +1,6 @@
-package com.rocket.rocket_project.recruit.domain.response;
+package com.rocket.rocket_project.recruit.domain.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Field {
-    private Long fieldSeq;
-    private String name;
+public class AccessUser {
+
+    private Long memberSeq;
+
 }

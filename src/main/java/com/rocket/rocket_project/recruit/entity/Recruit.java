@@ -1,13 +1,15 @@
 package com.rocket.rocket_project.recruit.entity;
 
+import com.rocket.rocket_project.position.entity.Keep;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Recruit")
@@ -23,10 +25,10 @@ public class Recruit {
     private String name;
 
     @Column(nullable = false)
-    private String state;
+    private String status;
 
     @Column(nullable = false)
-    private Integer leader;
+    private Long leader;
 
     @Column(name = "start_date")
     private LocalDate startDate;
@@ -45,24 +47,44 @@ public class Recruit {
 
     @JoinColumn(name = "field_seq")
     @ManyToOne
-    private Field fieldCode;
+    private ProjectField projectField;
 
     @JoinColumn(name = "type_seq",nullable = false)
-    @ManyToOne
-    private Type typeCode;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ProjectType projectType;
+
+    @OneToMany(mappedBy = "recruitSeq",fetch = FetchType.EAGER)
+    private List<Keep> keepList = new ArrayList<>();
+
+    public void addKeep(Keep keep){
+        this.keepList.add(keep);
+    }
+    public void removeKeep(Keep keep){
+        this.keepList.remove(keep);
+    }
+    public Recruit(Long recruitSeq, String name, ProjectType type, ProjectField field,List<Keep> keepList) {
+        this.recruitSeq = recruitSeq;
+        this.name = name;
+        this.projectField = field;
+        this.projectType = type;
+        this.keepList = keepList;
+
+
+    }
 
     @Builder
-    public Recruit(String name, String state, Integer leader, LocalDate startDate, LocalDate endDate,
-                   LocalDateTime createAt, String content, String info, Field fieldCode, Type typeCode) {
+    public Recruit(String name, String status, Long leader, LocalDate startDate, LocalDate endDate,
+                   LocalDateTime createdAt, String content, String info, ProjectField field, ProjectType type, List<Keep> keepList) {
         this.name = name;
-        this.state = state;
+        this.status = status;
         this.leader = leader;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.createdAt = createAt;
+        this.createdAt = createdAt;
         this.content = content;
         this.info = info;
-        this.fieldCode = fieldCode;
-        this.typeCode = typeCode;
+        this.projectField = field;
+        this.projectType = type;
+        this.keepList= keepList;
     }
 }

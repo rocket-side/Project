@@ -1,12 +1,9 @@
 package com.rocket.rocket_project.community.entity;
 
-import com.rocket.rocket_project.recruit.entity.Field;
-import com.rocket.rocket_project.recruit.entity.Type;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity

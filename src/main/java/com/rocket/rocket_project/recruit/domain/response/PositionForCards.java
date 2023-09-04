@@ -10,7 +10,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Field {
-    private Long fieldSeq;
+@JsonRootName("position-genre")
+public class PositionForCards {
+    private Long positionSeq;
     private String name;
+
+    private Long recruitSeq;
 }

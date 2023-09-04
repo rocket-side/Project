@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "RECRUIT_POSITION_APPLY")
+@Table(name = "Recruit_Position_Apply")
 @NoArgsConstructor
 @Getter
 public class RecruitPositionApply {

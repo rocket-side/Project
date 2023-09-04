@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "Skill_recruit")
+@Table(name = "Skill_Recruit")
 @NoArgsConstructor
 @Getter
 public class SkillRecruit {
