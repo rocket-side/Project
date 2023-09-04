@@ -6,14 +6,19 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonRootName("position")
-public class PositionForCards {
-    private Long positionSeq;
-    private String name;
+public class RecruitTag {
 
-    private Long recruitSeq;
+    private List<Type> types;
+
+    private List<Field> Fields;
+
+    private List<Position> positions;
+
 }

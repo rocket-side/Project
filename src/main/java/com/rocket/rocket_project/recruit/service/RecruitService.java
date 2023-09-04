@@ -6,6 +6,7 @@ import com.rocket.rocket_project.recruit.repository.RecruitRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Pageable;
@@ -51,5 +52,8 @@ public class RecruitService {
                 .collect(Collectors.toList());
 
         return new PageImpl<>(recruitCards);
+    }
+
+    public List<RecruitTag> getRecruitTagList() {
     }
 }

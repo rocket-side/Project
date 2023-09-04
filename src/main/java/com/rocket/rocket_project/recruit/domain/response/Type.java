@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Type {
-
     @Schema(description = "공고유형번호", defaultValue = "typeId")
     private Long typeSeq;
     @Schema(description = "공고유형이름", defaultValue = "typeName")
