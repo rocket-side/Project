@@ -1,5 +1,6 @@
 package com.rocket.rocket_project.introduction.service;
 
+import com.rocket.rocket_project.exception.NotFoundException;
 import com.rocket.rocket_project.introduction.domain.request.CommentWriter;
 import com.rocket.rocket_project.introduction.domain.response.CommentDto;
 import com.rocket.rocket_project.introduction.domain.response.IntroductionDto;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,6 +63,12 @@ public class IntroductionService {
         CommentWriter commentWriter = commentRepository.findCommentIntroductionByCommentSeq(commentSeq);
         if(commentWriter.getMemberSeq() == memberSeq) return true;
         else return false;
+    }
 
+    public Boolean isIntroductionWriter(Long recruitSeq,Long accessUserSeq){
+        Introduction introduction = introductionRepository.findById(recruitSeq)
+                .orElseThrow(() -> new NotFoundException("해당 소개글은 존재하지 않습니다."));
+        if(accessUserSeq == introduction.getRecruit().getLeader()) return true;
+        else return false;
     }
 }
