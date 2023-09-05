@@ -13,7 +13,6 @@ public class CommentRepositoryImpl extends QuerydslRepositorySupport implements 
 
     QCommentIntroduction comment1 = QCommentIntroduction.commentIntroduction;
     QCommentIntroduction comment2 = QCommentIntroduction.commentIntroduction;
-
     @Override
     public List<CommentDto>getReplyList(Long recruitSeq,Long commentSeq){
         return from(comment1)

@@ -1,5 +1,6 @@
 package com.rocket.rocket_project.introduction.service;
 
+import com.rocket.rocket_project.introduction.domain.request.CommentWriter;
 import com.rocket.rocket_project.introduction.domain.response.CommentDto;
 import com.rocket.rocket_project.introduction.domain.response.IntroductionDto;
 import com.rocket.rocket_project.introduction.entity.CommentIntroduction;
@@ -7,8 +8,6 @@ import com.rocket.rocket_project.introduction.entity.Introduction;
 import com.rocket.rocket_project.introduction.repository.CommentRepository;
 import com.rocket.rocket_project.introduction.repository.IntroductionRepository;
 import com.rocket.rocket_project.position.service.PositionService;
-import com.rocket.rocket_project.recruit.domain.response.RecruitDto;
-import com.rocket.rocket_project.recruit.repository.RecruitRepository;
 import com.rocket.rocket_project.recruit.service.RecruitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -56,5 +55,12 @@ public class IntroductionService {
                             .build();
                 })
                 .collect(Collectors.toList());
+    }
+
+    public Boolean isRedirectUser(Long commentSeq, Long memberSeq){
+        CommentWriter commentWriter = commentRepository.findCommentIntroductionByCommentSeq(commentSeq);
+        if(commentWriter.getMemberSeq() == memberSeq) return true;
+        else return false;
+
     }
 }
