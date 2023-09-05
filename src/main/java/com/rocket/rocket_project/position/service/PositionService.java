@@ -1,5 +1,6 @@
 package com.rocket.rocket_project.position.service;
 
+import com.rocket.rocket_project.position.domain.response.Applicants;
 import com.rocket.rocket_project.position.domain.response.ApplyStatus;
 import com.rocket.rocket_project.position.domain.response.PositionCount;
 import com.rocket.rocket_project.position.entity.RecruitPositionApply;
@@ -37,4 +38,7 @@ public class PositionService {
                 .collect(Collectors.toList());
     }
 
+    public List<Applicants> getApplicants(Long recruitSeq) {
+        return positionRepository.getRecruitPositionApply(recruitSeq);
+    }
 }
