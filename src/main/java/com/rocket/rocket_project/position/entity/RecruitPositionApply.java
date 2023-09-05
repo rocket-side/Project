@@ -27,9 +27,9 @@ public class RecruitPositionApply {
         private Long memberSeq;
         @JoinColumn(name = "position_seq",nullable = false)
         @ManyToOne
-        private Position positionSeq;
+        private Position position;
         @JoinColumn(name = "recruit_seq",nullable = false)
         @ManyToOne
-        private Recruit recruitSeq;
+        private Recruit recruit;
     }
 }

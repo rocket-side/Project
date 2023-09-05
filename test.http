@@ -46,6 +46,9 @@ Content-Type: application/json
   "memberSeq" : 1
 }
 
+### 해당 공고 모집 현황
+GET http://localhost:8989/project/api/recruits/1/applyStatus
+
 ### 프로젝트별 멤버 조회
 GET http://localhost:8080/projects/2/accounts
 

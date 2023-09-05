@@ -60,11 +60,19 @@ public class RecruitRestController {
         return ResponseEntity.ok(recruitService.getRecruit(recruitSeq));
     }
 
+    /**
+     * 공고 수정 or 삭제시 접근 user 가 공고 생성자가 맞는지 확인
+     * @param recruitSeq
+     * @param accessUser
+     * @return Boolean
+     */
     @GetMapping("/isgroupleader/{recruit-seq}")
     public ResponseEntity<Boolean> isGroupLeader(@PathVariable(name = "recruit-seq") Long recruitSeq,
                                                  @Valid @RequestBody AccessUser accessUser) {
         return ResponseEntity.ok(recruitService.isGroupLeader(recruitSeq,accessUser));
     }
+
+
 
 
 }

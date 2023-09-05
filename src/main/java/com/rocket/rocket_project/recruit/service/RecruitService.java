@@ -101,4 +101,6 @@ public class RecruitService {
         if(recruitLeader.getLeader() == accessUser.getMemberSeq()) return true;
         else return false;
     }
+
+
 }

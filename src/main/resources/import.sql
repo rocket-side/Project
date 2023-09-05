@@ -17,6 +17,8 @@ insert into Position (position_seq,name,position_genre_seq) values (4,'사업기
 insert into Recruit_Position_Count (recruit_seq,position_seq,count) values (1,1,2);
 insert into Recruit_Position_Count (recruit_seq,position_seq,count) values (1,2,1);
 insert into Recruit_Position_Count (recruit_seq,position_seq,count) values (1,3,1);
-
+insert into Recruit_Position_Apply (member_seq,is_accept,recruit_seq,position_seq) values (1,'수락',1,1);
+insert into Recruit_Position_Apply (member_seq,is_accept,recruit_seq,position_seq) values (2,'대기',1,1);
+insert into Recruit_Position_Apply (member_seq,is_accept,recruit_seq,position_seq) values (3,'수락',1,2);
 
 

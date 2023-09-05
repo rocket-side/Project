@@ -8,18 +8,13 @@ import com.rocket.rocket_project.position.entity.QPosition;
 import com.rocket.rocket_project.position.entity.QRecruitPositionCount;
 import com.rocket.rocket_project.recruit.domain.response.Keep;
 import com.rocket.rocket_project.recruit.domain.response.PositionForCards;
-import com.rocket.rocket_project.recruit.domain.response.RecruitTag;
 import com.rocket.rocket_project.recruit.entity.*;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-
-import static com.rocket.rocket_project.position.entity.QKeep.keep;
-
 
 public class RecruitRepositoryImpl extends QuerydslRepositorySupport implements RecruitRepositoryCustom{
     public RecruitRepositoryImpl(){super(Recruit.class);}
