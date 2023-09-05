@@ -1,4 +1,4 @@
-package com.rocket.rocket_project.position.restController;
+package com.rocket.rocket_project.position.controller;
 
 import com.rocket.rocket_project.position.domain.response.Applicants;
 import com.rocket.rocket_project.position.domain.response.RecruitCrew;

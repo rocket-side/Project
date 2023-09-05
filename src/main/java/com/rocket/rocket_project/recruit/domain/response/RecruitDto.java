@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Builder
@@ -38,4 +39,6 @@ public class RecruitDto {
     private Type projectType;
 
     private Integer keepCount;
+
+    private List<SkillDto> skills;
 }

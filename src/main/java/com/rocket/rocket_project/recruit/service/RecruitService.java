@@ -8,6 +8,7 @@ import com.rocket.rocket_project.recruit.entity.ProjectField;
 import com.rocket.rocket_project.recruit.entity.Recruit;
 import com.rocket.rocket_project.recruit.repository.FieldRepository;
 import com.rocket.rocket_project.recruit.repository.RecruitRepository;
+import com.rocket.rocket_project.recruit.repository.SkillRepository;
 import com.rocket.rocket_project.recruit.repository.TypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -28,6 +29,7 @@ public class RecruitService {
     private final FieldRepository fieldRepository;
     private final TypeRepository typeRepository;
     private final PositionRepository positionRepository;
+    private final SkillRepository skillRepository;
 
     /**
      * 모든 공고 카드 목록 조회
@@ -77,6 +79,7 @@ public class RecruitService {
         Field fieldDto = new Field(recruit.getProjectField().getFieldSeq(),
                 recruit.getProjectField().getName());
         Integer keepCount = recruitRepository.findAllKeepList(recruitSeq).size();
+        List<SkillDto> skillDtoList = skillRepository.getRecruitSkills(recruitSeq);
 
         return RecruitDto.builder()
                 .recruitSeq(recruitSeq)
@@ -91,6 +94,7 @@ public class RecruitService {
                 .projectType(typeDto)
                 .projectField(fieldDto)
                 .keepCount(keepCount)
+                .skills(skillDtoList)
                 .build();
 
 

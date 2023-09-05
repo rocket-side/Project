@@ -20,5 +20,11 @@ insert into Recruit_Position_Count (recruit_seq,position_seq,count) values (1,3,
 insert into Recruit_Position_Apply (member_seq,is_accept,recruit_seq,position_seq) values (1,'수락',1,1);
 insert into Recruit_Position_Apply (member_seq,is_accept,recruit_seq,position_seq) values (2,'대기',1,1);
 insert into Recruit_Position_Apply (member_seq,is_accept,recruit_seq,position_seq) values (3,'수락',1,2);
+insert into Skill (skill_seq,name) values (1,'스프링부트');
+insert into Skill (skill_seq,name) values (2,'IOS');
+insert into Skill (skill_seq,name) values (3,'swift');
+insert into Skill_Recruit (recruit_seq,skill_seq) values (1,1);
+insert into Skill_Recruit (recruit_seq,skill_seq) values (1,2);
+insert into Skill_Recruit (recruit_seq,skill_seq) values (1,3);
 
 
