@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.security.PrivateKey;
-
 @Getter
 @Builder
 @AllArgsConstructor
@@ -16,6 +14,6 @@ public class Applicants {
     private Long memberSeq;
     private Long recruitSeq;
     private Long positionSeq;
-    private String name;
+    private String positionName;
     private String isAccept;
 }

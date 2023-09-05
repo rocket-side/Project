@@ -1,6 +1,7 @@
 package com.rocket.rocket_project.position.restController;
 
 import com.rocket.rocket_project.position.domain.response.Applicants;
+import com.rocket.rocket_project.position.domain.response.RecruitCrew;
 import com.rocket.rocket_project.position.service.PositionService;
 import com.rocket.rocket_project.position.domain.response.ApplyStatus;
 import lombok.RequiredArgsConstructor;
@@ -29,9 +30,24 @@ public class PositionRestController {
         return ResponseEntity.ok(positionService.getApplicantStatue(recruitSeq));
     }
 
+    /**
+     * 해당 공고 대기중인 지원자 명단 조회
+     * @param recruitSeq
+     * @return
+     */
     @GetMapping("/{recruit-seq}/applicants")
     public ResponseEntity<List<Applicants>> getApplicantList(@PathVariable(name = "recruit-seq") Long recruitSeq){
         return ResponseEntity.ok(positionService.getApplicants(recruitSeq));
+    }
+
+    /**
+     * 해당 공고 팀원 목록
+     * @param recruitSeq
+     * @return
+     */
+    @GetMapping("/{recruit-seq}/crews")
+    public ResponseEntity<List<RecruitCrew>> getRecruitCrewList(@PathVariable(name = "recruit-seq") Long recruitSeq){
+        return ResponseEntity.ok(positionService.getRecruitCrews(recruitSeq));
     }
 
 

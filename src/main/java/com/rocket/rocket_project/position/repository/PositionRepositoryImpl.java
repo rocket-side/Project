@@ -3,6 +3,7 @@ package com.rocket.rocket_project.position.repository;
 import com.querydsl.core.types.Projections;
 import com.rocket.rocket_project.position.domain.response.Applicants;
 import com.rocket.rocket_project.position.domain.response.PositionCount;
+import com.rocket.rocket_project.position.domain.response.RecruitCrew;
 import com.rocket.rocket_project.position.entity.Position;
 import com.rocket.rocket_project.position.entity.QPosition;
 import com.rocket.rocket_project.position.entity.QRecruitPositionApply;
@@ -17,6 +18,7 @@ public class PositionRepositoryImpl  extends QuerydslRepositorySupport implement
 
     QRecruitPositionCount recruitPositionCount = QRecruitPositionCount.recruitPositionCount;
     QPosition position = QPosition.position;
+    QRecruitPositionApply recruitPositionApply = QRecruitPositionApply.recruitPositionApply;
 
     /**
      * 공고 모집현황 중 모집 포지션 번호/이름/모집수
@@ -37,7 +39,7 @@ public class PositionRepositoryImpl  extends QuerydslRepositorySupport implement
 
     @Override
     public List<Applicants> getRecruitPositionApply(Long recruitSeq){
-        QRecruitPositionApply recruitPositionApply = QRecruitPositionApply.recruitPositionApply;
+
         return from(recruitPositionApply)
                 .leftJoin(position)
                 .on(recruitPositionApply.pk.position.positionSeq.eq(position.positionSeq))
@@ -48,6 +50,21 @@ public class PositionRepositoryImpl  extends QuerydslRepositorySupport implement
                         position.name,
                         recruitPositionApply.isAccept))
                 .where(recruitPositionApply.isAccept.eq("대기")
+                        .and(recruitPositionApply.pk.recruit.recruitSeq.eq(recruitSeq)))
+                .fetch();
+    }
+
+    @Override
+    public List<RecruitCrew> findRecruitCrews(Long recruitSeq){
+        return from(recruitPositionApply)
+                .leftJoin(position)
+                .on(recruitPositionApply.pk.position.positionSeq.eq(position.positionSeq))
+                .select(Projections.constructor(RecruitCrew.class,
+                        recruitPositionApply.pk.memberSeq,
+                        recruitPositionApply.pk.recruit.recruitSeq,
+                        recruitPositionApply.pk.position.positionSeq,
+                        position.name))
+                .where(recruitPositionApply.isAccept.eq("수락")
                         .and(recruitPositionApply.pk.recruit.recruitSeq.eq(recruitSeq)))
                 .fetch();
     }

@@ -52,6 +52,9 @@ GET http://localhost:8989/project/api/recruits/1/applyStatus
 ### 해당 공고 전체 지원자 조회(대기 상태만)
 GET http://localhost:8989/project/api/recruits/1/applicants
 
+### 해당 공고 팀원 삭제
+GET http://localhost:8989/project/api/recruits/1//crews
+
 ### 프로젝트별 멤버 조회
 GET http://localhost:8080/projects/2/accounts
 
