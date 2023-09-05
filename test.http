@@ -110,8 +110,8 @@ DELETE http://localhost:8080/projects/3/accounts/goback10000
 GET http://localhost:8989/project/api/introduces/1
 
 
-### 해당 프로젝트의 해당 태그가 등록된 업무 리스트 조회
-GET http://localhost:8080/projects/1/tasks/tags/1
+### 해당 프로젝트의 모든 댓글 리스트
+GET http://localhost:8989/project/api/introduces/1/comments
 
 
 ### 해당 프로젝트에 태그 등록

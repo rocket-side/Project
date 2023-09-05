@@ -26,5 +26,10 @@ insert into Skill (skill_seq,name) values (3,'swift');
 insert into Skill_Recruit (recruit_seq,skill_seq) values (1,1);
 insert into Skill_Recruit (recruit_seq,skill_seq) values (1,2);
 insert into Skill_Recruit (recruit_seq,skill_seq) values (1,3);
-insert into Introduction (recruit_seq,like_count,created_at,content) values (1,3,'2023-09-01','미술작품서비스 드디어 출시되었습니다.')
-
+insert into Introduction (recruit_seq,like_count,created_at,content) values (1,3,'2023-09-01','미술작품서비스 드디어 출시되었습니다.');
+insert into Comment_Introduction (comment_seq,content,create_at,member_seq,comment_seq2,recruit_seq) values (1,'test1','2023-09-01',1,null,1);
+insert into Comment_Introduction (comment_seq,content,create_at,member_seq,comment_seq2,recruit_seq) values (2,'test2','2023-09-01',2,1,1);
+insert into Comment_Introduction (comment_seq,content,create_at,member_seq,comment_seq2,recruit_seq) values (3,'test3','2023-09-01',3,1,1);
+insert into Comment_Introduction (comment_seq,content,create_at,member_seq,comment_seq2,recruit_seq) values (4,'test4','2023-09-01',3,null,1);
+insert into Comment_Introduction (comment_seq,content,create_at,member_seq,comment_seq2,recruit_seq) values (5,'test5','2023-09-01',1,null,1);
+insert into Comment_Introduction (comment_seq,content,create_at,member_seq,comment_seq2,recruit_seq) values (6,'test6','2023-09-01',2,5,1);
