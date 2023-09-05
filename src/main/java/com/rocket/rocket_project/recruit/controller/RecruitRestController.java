@@ -1,6 +1,7 @@
 package com.rocket.rocket_project.recruit.controller;
 
 import com.rocket.rocket_project.recruit.domain.request.AccessUser;
+import com.rocket.rocket_project.recruit.domain.request.RecruitRegisterRequest;
 import com.rocket.rocket_project.recruit.domain.response.RecruitCard;
 import com.rocket.rocket_project.recruit.domain.response.RecruitDto;
 import com.rocket.rocket_project.recruit.domain.response.RecruitTag;
@@ -8,6 +9,7 @@ import com.rocket.rocket_project.recruit.service.RecruitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.data.domain.Pageable;
@@ -71,6 +73,13 @@ public class RecruitRestController {
                                                  @Valid @RequestBody AccessUser accessUser) {
         return ResponseEntity.ok(recruitService.isGroupLeader(recruitSeq,accessUser));
     }
+
+//    @PostMapping("/register")
+//    public ResponseEntity<RecruitDto> createRecruit(@Valid @RequestBody RecruitRegisterRequest,
+//                                                    BindingResult bindingResult,
+//                                                    @PathVariable String memberSeq){
+//
+//    }
 
 
 
