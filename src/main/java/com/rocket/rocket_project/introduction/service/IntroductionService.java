@@ -10,9 +10,11 @@ import com.rocket.rocket_project.introduction.entity.Introduction;
 import com.rocket.rocket_project.introduction.repository.CommentRepository;
 import com.rocket.rocket_project.introduction.repository.IntroductionRepository;
 import com.rocket.rocket_project.position.service.PositionService;
+import com.rocket.rocket_project.recruit.domain.response.Field;
 import com.rocket.rocket_project.recruit.service.RecruitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -75,7 +77,22 @@ public class IntroductionService {
         else return false;
     }
 
-    public Page<IntroductionForCard> getIntroductionCards(Long field, Long type, Pageable pageable, Long memberSeq) {
-        return introductionRepository.getIntroductions(field,type,pageable);
+    public Page<IntroductionForCard> getIntroductionCards(Long fieldSeq, Long typeSeq, Pageable pageable, Long memberSeq) {
+        Page<Introduction> introductions = introductionRepository.getIntroductions(fieldSeq,typeSeq,pageable);
+
+         List<IntroductionForCard> cards = introductions.stream()
+                .map(introduce-> {
+                    Field field = new Field(introduce.getRecruit().getProjectField().getFieldSeq(),
+                            introduce.getRecruit().getProjectField().getName());
+                    return IntroductionForCard.builder()
+                            .recruitSeq(introduce.getRecruitSeq())
+                            .name(introduce.getRecruit().getName())
+                            .status(introduce.getStatus())
+                            .info(introduce.getRecruit().getInfo())
+                            .field(field)
+                            .build();
+                })
+                .collect(Collectors.toList());
+        return new PageImpl<>(cards);
     }
 }

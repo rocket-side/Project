@@ -10,5 +10,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 @NoRepositoryBean
 public interface IntroductionRepositoryCustom {
 
-    Page<IntroductionForCard> getIntroductions(Long field_pm, Long type_pm , Pageable pageable);
+    Page<Introduction> getIntroductions(Long field_pm, Long type_pm , Pageable pageable);
 }

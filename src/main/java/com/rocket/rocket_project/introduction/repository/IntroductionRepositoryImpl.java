@@ -27,14 +27,10 @@ public class IntroductionRepositoryImpl extends QuerydslRepositorySupport implem
 
 
     @Override
-    public Page<IntroductionForCard> getIntroductions(Long field_pm, Long type_pm , Pageable pageable){
-        JPAQuery<IntroductionForCard> content = (JPAQuery<IntroductionForCard>) from(introduction)
+    public Page<Introduction> getIntroductions(Long field_pm, Long type_pm , Pageable pageable){
+        JPAQuery<Introduction> content = (JPAQuery<Introduction>) from(introduction)
                 .innerJoin(introduction.recruit,recruit)
-                .innerJoin(recruit.projectType,type)
-                .select(Projections.constructor(IntroductionForCard.class,
-                        recruit.recruitSeq,recruit.name,
-                        field.fieldSeq,field.name, recruit.info,
-                        introduction.status));
+                .innerJoin(recruit.projectType,type);
         if (field_pm != null) {
             content.where(recruit.projectField.fieldSeq.eq(field_pm));
         }
@@ -45,7 +41,7 @@ public class IntroductionRepositoryImpl extends QuerydslRepositorySupport implem
 //        return position_pm != null ? positionGenre.positionGenreSeq.eq(position_pm) : null;
 //    }
 
-        List<IntroductionForCard> result = content.fetch();
+        List<Introduction> result = content.fetch();
         return new PageImpl<>(result, pageable,content.stream().count());
     }
 
