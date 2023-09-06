@@ -39,7 +39,7 @@ public class Community {
     private Category categorySeq;
 
     @Builder
-    public Community(Long memberSeq, LocalDateTime createAt, Integer viewCount, Integer likeCount, String content,
+    public Community(Long postSeq, Long memberSeq, LocalDateTime createAt, Integer viewCount, Integer likeCount, String content,
                      String title, Category categorySeq) {
         this.memberSeq = memberSeq;
         this.createAt = createAt;
@@ -48,6 +48,7 @@ public class Community {
         this.content = content;
         this.title = title;
         this.categorySeq = categorySeq;
+        this.postSeq = postSeq;
     }
 
 }
