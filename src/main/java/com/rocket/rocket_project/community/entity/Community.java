@@ -2,6 +2,7 @@ package com.rocket.rocket_project.community.entity;
 
 import com.rocket.rocket_project.recruit.entity.Field;
 import com.rocket.rocket_project.recruit.entity.Type;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -30,8 +31,23 @@ public class Community {
     private Integer likeCount;
     @Column(nullable = false)
     private String content;
+
+    @Column(nullable = false)
+    private String title;
     @JoinColumn(name = "category_seq")
     @ManyToOne
     private Category categorySeq;
+
+    @Builder
+    public Community(Long memberSeq, LocalDateTime createAt, Integer viewCount, Integer likeCount, String content,
+                     String title, Category categorySeq) {
+        this.memberSeq = memberSeq;
+        this.createAt = createAt;
+        this.viewCount = viewCount;
+        this.likeCount = likeCount;
+        this.content = content;
+        this.title = title;
+        this.categorySeq = categorySeq;
+    }
 
 }
