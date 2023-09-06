@@ -1,8 +1,11 @@
 package com.rocket.rocket_project.community.controller;
 
+import com.rocket.rocket_project.community.dto.request.CommunityCommentRegisterDto;
 import com.rocket.rocket_project.community.dto.request.CommunityRegisterDto;
 import com.rocket.rocket_project.community.dto.response.CommunityResponseDto;
 import com.rocket.rocket_project.community.entity.Community;
+import com.rocket.rocket_project.community.entity.CommunityComment;
+import com.rocket.rocket_project.community.service.CommunityCommentService;
 import com.rocket.rocket_project.community.service.CommunityService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,6 +24,8 @@ public class CommunityController {
 
     private final CommunityService communityService;
 
+    private final CommunityCommentService communityCommentService;
+
     @ApiOperation(value = "커뮤니티 페이지 조회", notes = "전체 커뮤니티 페이지 조회")
     @GetMapping()
     public ResponseEntity<Page<Community>> getPageCommunity(@RequestParam(required = false, defaultValue = "0"
@@ -28,6 +33,16 @@ public class CommunityController {
                                                             @RequestParam(required = false, defaultValue = "createAt",
                                                             value = "criteria") String criteria) {
         return ResponseEntity.status(HttpStatus.OK).body(communityService.getPageCommunity(pageNo, criteria));
+    }
+
+    @ApiOperation(value = "댓글 조회", notes = "게시글의 seq로 댓글을 조회합니다.")
+    @GetMapping("/{post_seq}/comments")
+    public ResponseEntity<Page<CommunityComment>> getComments(@RequestParam(required = false, defaultValue = "0",
+    value = "page") int pageNo,
+                                                              @RequestParam(required = false, defaultValue = "createAt",
+                                                              value = "criteria") String criteria,
+                                                              @PathVariable Long post_seq) {
+        return ResponseEntity.status(HttpStatus.OK).body(communityCommentService.findAll(pageNo, criteria, post_seq));
     }
 
     @ApiOperation(value = "커뮤니티 글 작성", notes = "게시글 작성 후 저장")
@@ -55,5 +70,34 @@ public class CommunityController {
     public ResponseEntity<Void> deleteCommunity(@PathVariable Long post_seq) {
         communityService.deleteCommunity(post_seq);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @ApiOperation(value = "댓글 등록", notes = "댓글을 등록합니다.")
+    @PostMapping("/{post_seq}/comments/register")
+    public ResponseEntity<Void> registerComment(@PathVariable Long post_seq, @RequestBody CommunityCommentRegisterDto dto) {
+        communityCommentService.registerCommunityComment(post_seq, dto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @ApiOperation(value = "댓글 수정", notes = "댓글seq,게시글seq, dto를 받아 수정합니다.")
+    @PatchMapping("/{post_seq}/comments/update/{comment_seq}")
+    public ResponseEntity<Void> updateComment(@PathVariable Long post_seq, @PathVariable Long comment_seq, @RequestBody
+                                              CommunityCommentRegisterDto dto) {
+        communityCommentService.updateCommunityComment(post_seq, dto, comment_seq);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @ApiOperation(value = "댓글 삭제", notes = "댓글의 seq를 받아 해당 댓글을 삭제합니다.")
+    @DeleteMapping("/comments/delete/{comment_seq}")
+    public ResponseEntity<Void> deleteComment(@PathVariable Long comment_seq) {
+        communityCommentService.deleteComment(comment_seq);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @ApiOperation(value = "게시글 좋아요 업데이트", notes = "게시글 seq를 받아 해당 게시글의 좋아요를 1 상승시킵니다.")
+    @PatchMapping("/{post_seq}/like")
+    public ResponseEntity<Void> likeUpdate(@PathVariable Long post_seq) {
+        communityService.updateLike(post_seq);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
