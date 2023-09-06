@@ -51,4 +51,8 @@ public class Community {
         this.postSeq = postSeq;
     }
 
+    public void likeUpdate() {
+        this.likeCount = this.likeCount + 1;
+    }
+
 }

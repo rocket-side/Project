@@ -17,4 +17,6 @@ public interface CommunityService {
     void deleteCommunity(Long postSeq);
 
     Page<Community> getPageCommunity(int pageNo, String criteria);
+
+    void updateLike(Long communitySeq);
 }

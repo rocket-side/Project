@@ -2,6 +2,8 @@ package com.rocket.rocket_project.community.entity;
 
 import com.rocket.rocket_project.introduction.entity.CommentIntroduction;
 import com.rocket.rocket_project.recruit.entity.Recruit;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +13,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "Community_Comment")
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Getter
 public class CommunityComment {
     @Id
@@ -25,9 +29,9 @@ public class CommunityComment {
     private String content;
     @JoinColumn(name = "comment_seq2")
     @ManyToOne
-    private CommentIntroduction commentSeq2;
+    private CommunityComment commentSeq2;
 
     @JoinColumn(name = "post_seq",nullable = false)
     @ManyToOne
-    private Recruit postSeq;
+    private Community postSeq;
 }

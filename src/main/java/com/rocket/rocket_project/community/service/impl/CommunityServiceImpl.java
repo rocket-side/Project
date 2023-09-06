@@ -85,4 +85,11 @@ public class CommunityServiceImpl implements CommunityService {
     public void deleteCommunity(Long postSeq) {
         communityRepository.deleteById(postSeq);
     }
+
+    @Override
+    public void updateLike(Long communitySeq) {
+        Community community = communityRepository.findById(communitySeq).orElseThrow();
+        community.likeUpdate();
+        communityRepository.save(community);
+    }
 }
