@@ -8,6 +8,8 @@ import com.rocket.rocket_project.recruit.domain.request.AccessUser;
 import com.rocket.rocket_project.recruit.repository.RecruitRepository;
 import com.rocket.rocket_project.recruit.service.RecruitService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,10 +32,16 @@ public class IntroductionRestController {
         return ResponseEntity.ok(introductionService.getIntroduction(recruitSeq));
     }
 
-//    @GetMapping()
-//    public ResponseEntity<List<IntroductionForCard>> getIntroductions(){
-//
-//    }
+    @GetMapping()
+    public ResponseEntity<Page<IntroductionForCard>> getIntroductions(Pageable pageable,
+                                                                      @RequestParam(value = "type", required = false) Long type,
+                                                                      @RequestParam(value = "position", required = false) String position,
+                                                                      @RequestParam(value = "field", required = false) Long field,
+                                                                      @RequestBody AccessUser accessUser){
+        Page<IntroductionForCard> introductionForCardList = introductionService.getIntroductionCards(field,type,pageable,accessUser.getMemberSeq());
+        return  ResponseEntity.ok(introductionForCardList);
+
+    }
 
     /**
      *  해당 소개글의 모든 댓글 조회

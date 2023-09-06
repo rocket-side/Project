@@ -20,6 +20,9 @@ public class Introduction {
     private LocalDateTime createdAt;
     @Column
     private String content;
+
+    @Column
+    private String status;
     @MapsId
     @JoinColumn(name = "recruit_seq",nullable = false)
     @OneToOne

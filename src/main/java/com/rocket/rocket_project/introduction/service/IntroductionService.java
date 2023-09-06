@@ -4,6 +4,7 @@ import com.rocket.rocket_project.exception.NotFoundException;
 import com.rocket.rocket_project.introduction.domain.request.CommentWriter;
 import com.rocket.rocket_project.introduction.domain.response.CommentDto;
 import com.rocket.rocket_project.introduction.domain.response.IntroductionDto;
+import com.rocket.rocket_project.introduction.domain.response.IntroductionForCard;
 import com.rocket.rocket_project.introduction.entity.CommentIntroduction;
 import com.rocket.rocket_project.introduction.entity.Introduction;
 import com.rocket.rocket_project.introduction.repository.CommentRepository;
@@ -11,6 +12,8 @@ import com.rocket.rocket_project.introduction.repository.IntroductionRepository;
 import com.rocket.rocket_project.position.service.PositionService;
 import com.rocket.rocket_project.recruit.service.RecruitService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -70,5 +73,9 @@ public class IntroductionService {
                 .orElseThrow(() -> new NotFoundException("해당 소개글은 존재하지 않습니다."));
         if(accessUserSeq == introduction.getRecruit().getLeader()) return true;
         else return false;
+    }
+
+    public Page<IntroductionForCard> getIntroductionCards(Long field, Long type, Pageable pageable, Long memberSeq) {
+        return introductionRepository.getIntroductions(field,type,pageable);
     }
 }

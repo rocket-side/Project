@@ -129,27 +129,18 @@ Content-Type: application/json
   "memberSeq" : 1
 }
 
-
-### 해당 프로젝트에 태그 등록
-POST http://localhost:8080/projects/1/tags
+### 모든 소개글 카드 목록
+GET http://localhost:8989//project/api/introduces?page=1
 Content-Type: application/json
 
 {
-  "name" : "tag-test-create"
+  "memberSeq" : 1
 }
 
-### 해당 태그 수정
-PATCH http://localhost:8080/projects/1/tags/7
-Content-Type: application/json
-
-{
-  "name" : "tag-test-update"
-}
-
-### 태그 삭제
-DELETE http://localhost:8080/projects/1/tags/7
 
 
+
+### fdfdf
 # milestone
 ### 해당 프로젝트의 마일스톤 조회
 GET http://localhost:8080/projects/1/milestones
