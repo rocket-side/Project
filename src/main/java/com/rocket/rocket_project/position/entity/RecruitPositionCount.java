@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "RECRUIT_POSITION_COUNT")
+@Table(name = "Recruit_Position_Count")
 @NoArgsConstructor
 @Getter
 public class RecruitPositionCount {
@@ -26,9 +26,9 @@ public class RecruitPositionCount {
     public static class Pk implements Serializable {
         @JoinColumn(name = "position_seq",nullable = false)
         @ManyToOne
-        private Position positionSeq;
+        private Position position;
         @JoinColumn(name = "recruit_seq",nullable = false)
         @ManyToOne
-        private Recruit recruitSeq;
+        private Recruit recruit;
     }
 }
