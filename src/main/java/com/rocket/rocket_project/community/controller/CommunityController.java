@@ -7,6 +7,7 @@ import com.rocket.rocket_project.community.entity.Community;
 import com.rocket.rocket_project.community.entity.CommunityComment;
 import com.rocket.rocket_project.community.service.CommunityCommentService;
 import com.rocket.rocket_project.community.service.CommunityService;
+import com.rocket.rocket_project.recruit.domain.request.PageDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -28,16 +29,16 @@ public class CommunityController {
 
     @ApiOperation(value = "커뮤니티 페이지 조회", notes = "전체 커뮤니티 페이지 조회")
     @GetMapping()
-    public ResponseEntity<Page<Community>> getPageCommunity(@RequestParam(required = false, defaultValue = "0"
+    public ResponseEntity<PageDto<Community>> getPageCommunity(@RequestParam(required = false, defaultValue = "0"
     , value = "page") int pageNo,
-                                                            @RequestParam(required = false, defaultValue = "createAt",
+                                                               @RequestParam(required = false, defaultValue = "createAt",
                                                             value = "criteria") String criteria) {
         return ResponseEntity.status(HttpStatus.OK).body(communityService.getPageCommunity(pageNo, criteria));
     }
 
     @ApiOperation(value = "댓글 조회", notes = "게시글의 seq로 댓글을 조회합니다.")
     @GetMapping("/{post_seq}/comments")
-    public ResponseEntity<Page<CommunityComment>> getComments(@RequestParam(required = false, defaultValue = "0",
+    public ResponseEntity<PageDto<CommunityComment>> getComments(@RequestParam(required = false, defaultValue = "0",
     value = "page") int pageNo,
                                                               @RequestParam(required = false, defaultValue = "createAt",
                                                               value = "criteria") String criteria,

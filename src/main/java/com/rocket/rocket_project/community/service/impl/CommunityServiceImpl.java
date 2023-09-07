@@ -8,6 +8,8 @@ import com.rocket.rocket_project.community.entity.Community;
 import com.rocket.rocket_project.community.repository.CategoryRepository;
 import com.rocket.rocket_project.community.repository.CommunityRepository;
 import com.rocket.rocket_project.community.service.CommunityService;
+import com.rocket.rocket_project.recruit.domain.request.PageDto;
+import com.rocket.rocket_project.util.PageUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,9 +28,12 @@ public class CommunityServiceImpl implements CommunityService {
     private final CategoryRepository categoryRepository;
 
     @Override
-    public Page<Community> getPageCommunity(int pageNo, String criteria) {
+    public PageDto<Community> getPageCommunity(int pageNo, String criteria) {
         Pageable pageable = PageRequest.of(pageNo, 5, Sort.by(Sort.Direction.DESC, criteria));
-        return communityRepository.findAll(pageable);
+        Page<Community> communityPage =
+                communityRepository.findAll(PageUtil.convertToZeroBasePageWithSort(pageable));
+        return PageDto.of(communityPage,communityPage.getContent());
+
     }
 
     @Override
