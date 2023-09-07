@@ -27,7 +27,7 @@ public class RecruitDto {
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
 
     private String content;
