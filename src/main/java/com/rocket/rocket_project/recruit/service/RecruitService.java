@@ -10,6 +10,7 @@ import com.rocket.rocket_project.recruit.repository.FieldRepository;
 import com.rocket.rocket_project.recruit.repository.RecruitRepository;
 import com.rocket.rocket_project.recruit.repository.SkillRepository;
 import com.rocket.rocket_project.recruit.repository.TypeRepository;
+import com.rocket.rocket_project.util.PageUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -36,12 +37,12 @@ public class RecruitService {
      * @return 프로젝트 리스트
      */
     public Page<RecruitCard> getRecruitCards(Long field, Long type, Pageable pageable,Long accessUser){
-        Page<Recruit> infoForCards = recruitRepository.findAllBy(field,type,pageable);
+        Page<Recruit> infoForCards = recruitRepository.findAllBy(field,type, PageUtil.convertToZeroBasePageWithSort(pageable));
         return putTogether(infoForCards,accessUser);
     }
 
     public  Page<RecruitCard> putTogether(Page<Recruit> infoForCards, Long accessUser){
-        List<RecruitCard> recruitCards = infoForCards.stream()
+        List<RecruitCard> recruitCards = infoForCards.getContent().stream()
                 .map(info -> {
                     Type type = new Type(info.getProjectType().getTypeSeq(), info.getProjectType().getName());
                     Field field = new Field(info.getProjectField().getFieldSeq(), info.getProjectField().getName());
@@ -61,7 +62,7 @@ public class RecruitService {
                 })
                 .collect(Collectors.toList());
 
-        return new PageImpl<>(recruitCards);
+        return new PageImpl<>(recruitCards,infoForCards.getPageable(), infoForCards.getTotalElements());
     }
 
     public RecruitTag getRecruitTagList() {

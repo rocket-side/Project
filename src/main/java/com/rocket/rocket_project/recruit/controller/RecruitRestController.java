@@ -1,6 +1,7 @@
 package com.rocket.rocket_project.recruit.controller;
 
 import com.rocket.rocket_project.recruit.domain.request.AccessUser;
+import com.rocket.rocket_project.recruit.domain.request.PageDto;
 import com.rocket.rocket_project.recruit.domain.request.RecruitRegisterRequest;
 import com.rocket.rocket_project.recruit.domain.response.RecruitCard;
 import com.rocket.rocket_project.recruit.domain.response.RecruitDto;
@@ -8,6 +9,7 @@ import com.rocket.rocket_project.recruit.domain.response.RecruitTag;
 import com.rocket.rocket_project.recruit.service.RecruitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -33,14 +35,14 @@ public class RecruitRestController {
      * @return Page<RecruitCard>
      */
     @PostMapping()
-    public ResponseEntity<Page<RecruitCard>> getRecruits(Pageable pageable,
-                                                         @RequestParam(value = "type", required = false) Long type,
-                                                         @RequestParam(value = "position", required = false) String position,
-                                                         @RequestParam(value = "field", required = false) Long field,
-                                                         @RequestBody AccessUser accessUser
+    public ResponseEntity<PageDto<RecruitCard>> getRecruits(@PageableDefault(size = 16) Pageable pageable,
+                                                            @RequestParam(value = "type", required = false) Long type,
+                                                            @RequestParam(value = "position", required = false) String position,
+                                                            @RequestParam(value = "field", required = false) Long field,
+                                                            @RequestBody AccessUser accessUser
                                                          ) {
         Page<RecruitCard> recruitCards = recruitService.getRecruitCards(field,type,pageable,accessUser.getMemberSeq());
-        return ResponseEntity.ok(recruitCards);
+        return ResponseEntity.ok(PageDto.of(recruitCards,recruitCards.getContent()));
     }
 
     /**

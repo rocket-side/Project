@@ -5,15 +5,14 @@ import com.rocket.rocket_project.introduction.domain.response.IntroductionDto;
 import com.rocket.rocket_project.introduction.domain.response.IntroductionForCard;
 import com.rocket.rocket_project.introduction.service.IntroductionService;
 import com.rocket.rocket_project.recruit.domain.request.AccessUser;
-import com.rocket.rocket_project.recruit.repository.RecruitRepository;
-import com.rocket.rocket_project.recruit.service.RecruitService;
+import com.rocket.rocket_project.recruit.domain.request.PageDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,13 +32,13 @@ public class IntroductionRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<Page<IntroductionForCard>> getIntroductions(Pageable pageable,
+    public ResponseEntity<PageDto<IntroductionForCard>> getIntroductions(@PageableDefault(size = 16) Pageable pageable,
                                                                       @RequestParam(value = "type", required = false) Long type,
                                                                       @RequestParam(value = "position", required = false) String position,
                                                                       @RequestParam(value = "field", required = false) Long field,
                                                                       @RequestBody AccessUser accessUser){
         Page<IntroductionForCard> introductionForCardList = introductionService.getIntroductionCards(field,type,pageable,accessUser.getMemberSeq());
-        return  ResponseEntity.ok(introductionForCardList);
+        return  ResponseEntity.ok(PageDto.of(introductionForCardList,introductionForCardList.getContent()));
 
     }
 

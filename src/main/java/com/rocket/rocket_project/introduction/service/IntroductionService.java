@@ -12,6 +12,7 @@ import com.rocket.rocket_project.introduction.repository.IntroductionRepository;
 import com.rocket.rocket_project.position.service.PositionService;
 import com.rocket.rocket_project.recruit.domain.response.Field;
 import com.rocket.rocket_project.recruit.service.RecruitService;
+import com.rocket.rocket_project.util.PageUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -78,7 +79,7 @@ public class IntroductionService {
     }
 
     public Page<IntroductionForCard> getIntroductionCards(Long fieldSeq, Long typeSeq, Pageable pageable, Long memberSeq) {
-        Page<Introduction> introductions = introductionRepository.getIntroductions(fieldSeq,typeSeq,pageable);
+        Page<Introduction> introductions = introductionRepository.getIntroductions(fieldSeq,typeSeq, PageUtil.convertToZeroBasePageWithSort(pageable));
 
          List<IntroductionForCard> cards = introductions.stream()
                 .map(introduce-> {
@@ -93,6 +94,6 @@ public class IntroductionService {
                             .build();
                 })
                 .collect(Collectors.toList());
-        return new PageImpl<>(cards);
+        return new PageImpl<>(cards,introductions.getPageable(),introductions.getTotalElements());
     }
 }
