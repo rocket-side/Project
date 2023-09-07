@@ -7,6 +7,7 @@ import com.rocket.rocket_project.community.repository.CommunityCommentRepository
 import com.rocket.rocket_project.community.repository.CommunityRepository;
 import com.rocket.rocket_project.community.service.CommunityCommentService;
 import com.rocket.rocket_project.community.service.CommunityService;
+import com.rocket.rocket_project.recruit.domain.request.PageDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,9 +24,11 @@ public class CommunityCommentServiceImpl implements CommunityCommentService {
     private final CommunityRepository communityRepository;
 
     @Override
-    public Page<CommunityComment> findAll(int pageNo, String criteria, Long postSeq) {
+    public PageDto<CommunityComment> findAll(int pageNo, String criteria, Long postSeq) {
         Pageable pageable = PageRequest.of(pageNo, 5, Sort.by(Sort.Direction.DESC, criteria));
-        return communityCommentRepository.findAllByPostSeq(postSeq, pageable);
+        Page<CommunityComment> communityComments =  communityCommentRepository.findAllByPostSeq(postSeq, pageable);
+        return PageDto.of(communityComments,communityComments.getContent());
+
     }
 
     @Override
