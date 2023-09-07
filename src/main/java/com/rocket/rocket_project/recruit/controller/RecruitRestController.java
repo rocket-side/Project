@@ -32,7 +32,7 @@ public class RecruitRestController {
      * @param accessUser
      * @return Page<RecruitCard>
      */
-    @GetMapping()
+    @PostMapping()
     public ResponseEntity<Page<RecruitCard>> getRecruits(Pageable pageable,
                                                          @RequestParam(value = "type", required = false) Long type,
                                                          @RequestParam(value = "position", required = false) String position,
@@ -68,9 +68,9 @@ public class RecruitRestController {
      * @param accessUser
      * @return Boolean
      */
-    @GetMapping("/isgroupleader/{recruit-seq}")
+    @PostMapping("/isgroupleader/{recruit-seq}")
     public ResponseEntity<Boolean> isGroupLeader(@PathVariable(name = "recruit-seq") Long recruitSeq,
-                                                 @Valid @RequestBody AccessUser accessUser) {
+                                                 @RequestBody AccessUser accessUser) {
         return ResponseEntity.ok(recruitService.isGroupLeader(recruitSeq,accessUser));
     }
 

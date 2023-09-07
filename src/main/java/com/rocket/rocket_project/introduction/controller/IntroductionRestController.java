@@ -32,7 +32,7 @@ public class IntroductionRestController {
         return ResponseEntity.ok(introductionService.getIntroduction(recruitSeq));
     }
 
-    @GetMapping()
+    @PostMapping()
     public ResponseEntity<Page<IntroductionForCard>> getIntroductions(Pageable pageable,
                                                                       @RequestParam(value = "type", required = false) Long type,
                                                                       @RequestParam(value = "position", required = false) String position,
@@ -59,7 +59,7 @@ public class IntroductionRestController {
      * @param accessUser
      * @return
      */
-    @GetMapping("/isredirect/{comment-seq}")
+    @PostMapping("/isredirect/{comment-seq}")
     public ResponseEntity<Boolean> isRedirectUser(@PathVariable("comment-seq") Long commentSeq,
                                                   @RequestBody AccessUser accessUser){
         return ResponseEntity.ok(introductionService.isRedirectUser(commentSeq,accessUser.getMemberSeq()));
@@ -71,7 +71,7 @@ public class IntroductionRestController {
      * @param accessUser
      * @return
      */
-    @GetMapping("/iswriter/{recruit-seq}")
+    @PostMapping("/iswriter/{recruit-seq}")
     public ResponseEntity<Boolean> isIntroductionWriter(@PathVariable("recruit-seq") Long recruitSeq,
                                                         @RequestBody AccessUser accessUser){
         return ResponseEntity.ok(introductionService.isIntroductionWriter(recruitSeq,accessUser.getMemberSeq()));
