@@ -61,7 +61,7 @@ public class IntroductionRestController {
      */
     @GetMapping("/isredirect/{comment-seq}")
     public ResponseEntity<Boolean> isRedirectUser(@PathVariable("comment-seq") Long commentSeq,
-                                                  @Valid @RequestBody AccessUser accessUser){
+                                                  @RequestBody AccessUser accessUser){
         return ResponseEntity.ok(introductionService.isRedirectUser(commentSeq,accessUser.getMemberSeq()));
     }
 
@@ -73,7 +73,7 @@ public class IntroductionRestController {
      */
     @GetMapping("/iswriter/{recruit-seq}")
     public ResponseEntity<Boolean> isIntroductionWriter(@PathVariable("recruit-seq") Long recruitSeq,
-                                                        @Valid @RequestBody AccessUser accessUser){
+                                                        @RequestBody AccessUser accessUser){
         return ResponseEntity.ok(introductionService.isIntroductionWriter(recruitSeq,accessUser.getMemberSeq()));
     }
 

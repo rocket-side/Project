@@ -140,44 +140,10 @@ Content-Type: application/json
 
 
 
-### fdfdf
-# milestone
-### 해당 프로젝트의 마일스톤 조회
-GET http://localhost:8080/projects/1/milestones
 
 
-### 해당 마일스톤이 등록된 업무 조회
-GET http://localhost:8080/projects/1/tasks/milestones/1
 
 
-### 해당 프로젝트의 해당 마일스톤 조회
-GET http://localhost:8080/projects/1/milestones/1
-
-
-### 해당 프로젝트에 마일스톤 등록
-POST http://localhost:8080/projects/1/milestones
-Content-Type: application/json
-
-{
-  "name" : "test-milestone-create",
-  "start" : "2023-06-10",
-  "end" : "2023-06-16"
-}
-
-
-### 해당 마일스톤 수정
-PATCH http://localhost:8080/projects/1/milestones/5
-Content-Type: application/json
-
-{
-  "name" : "test-milestone-update",
-  "start" : "2023-06-02",
-  "end" : "2023-06-16"
-}
-
-
-### 해당 마일스톤 삭제
-DELETE http://localhost:8080/projects/1/milestones/5
 
 
 
