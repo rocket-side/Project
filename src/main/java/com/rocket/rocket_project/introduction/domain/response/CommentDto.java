@@ -20,7 +20,7 @@ public class CommentDto {
     private Long commentSeq;
     private Long memberSeq;
     private Long recruitSeq;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createAt;
     private String content;
     private List<CommentDto> ReplyList;

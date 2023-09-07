@@ -19,7 +19,7 @@ public class IntroductionDto {
 
     private RecruitDto recruit;
     private Integer likeCount;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
     private String content;
 
