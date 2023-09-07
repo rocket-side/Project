@@ -1,7 +1,5 @@
 package com.rocket.rocket_project.community.entity;
 
-import com.rocket.rocket_project.recruit.entity.Field;
-import com.rocket.rocket_project.recruit.entity.Type;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
