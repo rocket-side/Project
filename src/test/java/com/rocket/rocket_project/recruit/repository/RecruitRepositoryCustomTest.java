@@ -95,13 +95,7 @@ class RecruitRepositoryCustomTest {
     @Test
     void findAllBy() {
         Page<Recruit> recruitPage = recruitRepository.findAllBy(null,null,PageRequest.of(0,10));
-
-//        List<Recruit> content = recruitPage.getContent();
-//        for(Recruit recruit_result : content){
-//            int result = recruit_result.getKeepList().size();
-//            assertThat(result).isEqualTo(3);
-//        }
-        assertThat(recruitPage.getTotalElements()).isEqualTo(1);
+        assertThat(recruitPage.getTotalElements()).isEqualTo(6);
     }
 
     @Test
@@ -114,7 +108,7 @@ class RecruitRepositoryCustomTest {
     @Test
     void findAllRecruitPosition() {
         List<PositionForCards> positions = recruitRepository.findAllRecruitPosition();
-        assertThat(positions.size()).isEqualTo(3);
+        assertThat(positions.size()).isEqualTo(15);
     }
 
     @Test
